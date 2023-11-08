@@ -11,16 +11,6 @@ const CATEGORIES = [
   "suscriptions",
 ]
 
-const generateKey = (): string => {
-  const storedKey = window.localStorage.getItem("item-key")
-
-  const key = typeof storedKey === "string" ? `${parseInt(storedKey) + 1}` : "0"
-
-  window.localStorage.setItem("item-key", key)
-
-  return key
-}
-
 export default function ItemForm(): JSX.Element {
   const [description, setDescription] = useState("")
   const [value, setValue] = useState("")
@@ -46,7 +36,6 @@ export default function ItemForm(): JSX.Element {
       value,
       date,
       category,
-      key: generateKey(),
     }
 
     dispatch({ type: "addItem", payload: newItem })

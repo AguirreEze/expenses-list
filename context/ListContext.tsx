@@ -5,10 +5,12 @@ import type { Dispatch } from "react"
 
 import type { TypeItem } from "@/types"
 
+interface TypeNewItem extends Omit<TypeItem, "key"> {}
+
 type ActionType =
   | {
       type: "addItem"
-      payload: TypeItem
+      payload: TypeNewItem
     }
   | {
       type: "updateList"
@@ -21,6 +23,16 @@ export const ListContext = createContext<{
 
 const initialState: TypeItem[] | [] = []
 
+const generateKey = (): string => {
+  const storedKey = window.localStorage.getItem("item-key")
+
+  const key = typeof storedKey === "string" ? `${parseInt(storedKey) + 1}` : "0"
+
+  window.localStorage.setItem("item-key", key)
+
+  return key
+}
+
 function reducer(state: TypeItem[], action: ActionType): TypeItem[] | [] {
   switch (action.type) {
     case "updateList":
@@ -28,7 +40,8 @@ function reducer(state: TypeItem[], action: ActionType): TypeItem[] | [] {
         ? JSON.parse(window.localStorage.getItem("expenses-list") as string)
         : []
     case "addItem": {
-      const updatedList = [action.payload, ...state]
+      const newItem = { ...action.payload, key: generateKey() }
+      const updatedList = [newItem, ...state]
       window.localStorage.setItem("expenses-list", JSON.stringify(updatedList))
       return updatedList
     }
