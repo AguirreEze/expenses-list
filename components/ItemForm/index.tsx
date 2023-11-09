@@ -50,7 +50,6 @@ export default function ItemForm(): JSX.Element {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <fieldset>
-        <label>description</label>
         <input
           className={styles.rowStart}
           type="text"
@@ -58,21 +57,21 @@ export default function ItemForm(): JSX.Element {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           ref={valueRef}
+          placeholder="Description"
           autoFocus
         />
       </fieldset>
       <fieldset>
-        <label>value</label>
         <input
           type="number"
           name="value"
           step="0.01"
           value={value}
+          placeholder="Value"
           onChange={(e) => setValue(e.target.value)}
         />
       </fieldset>
       <fieldset>
-        <label>caregory</label>
         <select
           name="category"
           value={category}
@@ -88,7 +87,6 @@ export default function ItemForm(): JSX.Element {
         </select>
       </fieldset>
       <fieldset>
-        <label>date</label>
         <input
           className={styles.rowEnd}
           type="date"
