@@ -1,6 +1,9 @@
 "use client"
 import { ListContext } from "@/context/ListContext"
 import { useState, type FormEvent, useRef, useContext } from "react"
+import { Enter } from "@/components/icons"
+
+import styles from "./styles.module.css"
 
 const CATEGORIES = [
   "other",
@@ -9,6 +12,7 @@ const CATEGORIES = [
   "market",
   "health",
   "suscriptions",
+  "cuotas",
 ]
 
 export default function ItemForm(): JSX.Element {
@@ -44,41 +48,60 @@ export default function ItemForm(): JSX.Element {
     resetForm()
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        ref={valueRef}
-        autoFocus
-      />
-      <input
-        type="number"
-        name="value"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <select
-        name="category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        {CATEGORIES.map((category) => {
-          return (
-            <option value={category} key={category}>
-              {category}
-            </option>
-          )
-        })}
-      </select>
-      <input
-        type="date"
-        name="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
-      <button type="submit">add item</button>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <fieldset>
+        <label>description</label>
+        <input
+          className={styles.rowStart}
+          type="text"
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          ref={valueRef}
+          autoFocus
+        />
+      </fieldset>
+      <fieldset>
+        <label>value</label>
+        <input
+          type="number"
+          name="value"
+          step="0.01"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </fieldset>
+      <fieldset>
+        <label>caregory</label>
+        <select
+          name="category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          {CATEGORIES.map((category) => {
+            return (
+              <option value={category} key={category}>
+                {category}
+              </option>
+            )
+          })}
+        </select>
+      </fieldset>
+      <fieldset>
+        <label>date</label>
+        <input
+          className={styles.rowEnd}
+          type="date"
+          name="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+      </fieldset>
+      <fieldset className={styles.submitContainer}>
+        <button type="submit" className={styles.submit}>
+          add item <Enter width={20} height={20} />
+        </button>
+      </fieldset>
     </form>
   )
 }

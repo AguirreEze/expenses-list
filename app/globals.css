@@ -7,12 +7,12 @@
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 250, 250, 250;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --foreground-rgb: 250, 250, 250;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
@@ -47,6 +47,47 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input,
+select {
+  height: 2rem;
+  padding: 0.3rem;
+  border-width: 1px;
+  border-radius: 0;
+  width: 100%;
+}
+
+select,
+label,
+th {
+  text-transform: capitalize;
+}
+
+input[type="number"] {
+  text-align: right;
+}
+input[type="date"] {
+  text-align: center;
+}
+
+button[type="submit"] {
+  background-color: #04aa6d;
+  border: 2px outset rgb(0, 136, 0);
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border-width: 0;
+}
+
+button {
+  height: 2rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {

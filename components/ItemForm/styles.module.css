@@ -1,0 +1,27 @@
+.form {
+  display: grid;
+  gap: 1rem 0;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.rowStart {
+  padding-left: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.rowEnd {
+  padding-right: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.submitContainer {
+  grid-column: span 4;
+}
+
+.submit {
+  display: flex;
+  place-items: center;
+  gap: 0.4rem;
+}
