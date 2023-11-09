@@ -1,0 +1,12 @@
+.tr {
+  display: grid;
+  grid-template-columns: 50% 20% 15% 15%;
+  height: 1.5rem;
+}
+.table {
+  width: 100%;
+  max-width: 767px;
+}
+.category {
+  text-transform: capitalize;
+}
