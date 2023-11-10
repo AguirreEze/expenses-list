@@ -25,3 +25,16 @@
   place-items: center;
   gap: 0.4rem;
 }
+
+@media (max-width: 650px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+  }
+  .form input,
+  .form select {
+    padding: 0 1rem;
+    border-radius: 1rem;
+  }
+}

@@ -1,6 +1,9 @@
 .border {
+  display: grid;
+  place-items: center;
+  width: 100%;
   border: 1px outset rgb(var(--border-rgb));
   border-radius: 1rem;
-  width: 100%;
   padding: 1rem;
+  overflow: auto;
 }
