@@ -1,3 +1,7 @@
+.container {
+  grid-column: span 4;
+}
+
 .form {
   display: grid;
   gap: 1rem 0;

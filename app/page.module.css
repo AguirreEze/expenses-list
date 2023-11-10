@@ -1,8 +1,10 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
   gap: 2rem;
-  padding: 2rem;
-  min-height: 100vh;
+  max-width: 1000px;
+  width: 100%;
+  /* min-height: 100vh; */
+  margin: 2rem;
 }

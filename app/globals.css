@@ -34,6 +34,8 @@ button {
 }
 
 body {
+  display: flex;
+  justify-content: center;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
