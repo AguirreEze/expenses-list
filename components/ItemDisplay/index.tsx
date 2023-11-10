@@ -13,7 +13,7 @@ export default function ItemDisplay(): JSX.Element {
   }, [])
 
   return (
-    <CardBorder maxWidth="1000px" className={styles.container}>
+    <CardBorder tag="section" maxWidth="1000px" className={styles.container}>
       <table className={styles.table}>
         <thead>
           <tr className={styles.tr}>

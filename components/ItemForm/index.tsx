@@ -49,7 +49,7 @@ export default function ItemForm(): JSX.Element {
     resetForm()
   }
   return (
-    <CardBorder maxWidth="1000px" className={styles.container}>
+    <CardBorder tag="section" maxWidth="1000px" className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <fieldset>
           <input

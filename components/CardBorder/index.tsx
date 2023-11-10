@@ -1,7 +1,7 @@
 import styles from "./styles.module.css"
 
 interface Iprops {
-  tag?: string
+  tag?: "div" | "article" | "section" | "aside"
   maxWidth?: string
   className?: string
   children: React.ReactNode
@@ -13,9 +13,39 @@ export default function CardBorder({
   maxWidth = "unset",
   className = "",
 }: Iprops): JSX.Element {
-  return (
-    <div className={`${styles.border} ${className}`} style={{ maxWidth }}>
-      {children}
-    </div>
-  )
+  switch (tag) {
+    case "article":
+      return (
+        <article
+          className={`${styles.border} ${className}`}
+          style={{ maxWidth }}
+        >
+          {children}
+        </article>
+      )
+    case "aside":
+      return (
+        <aside className={`${styles.border} ${className}`} style={{ maxWidth }}>
+          {children}
+        </aside>
+      )
+    case "div":
+      return (
+        <div className={`${styles.border} ${className}`} style={{ maxWidth }}>
+          {children}
+        </div>
+      )
+    case "section":
+      return (
+        <section
+          className={`${styles.border} ${className}`}
+          style={{ maxWidth }}
+        >
+          {children}
+        </section>
+      )
+
+    default:
+      return <>{children}</>
+  }
 }
