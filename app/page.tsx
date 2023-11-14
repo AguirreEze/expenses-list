@@ -1,7 +1,10 @@
-import ItemForm from "@/components/ItemForm"
-import styles from "./page.module.css"
-import ItemDisplay from "@/components/ItemDisplay"
 import ListContext from "@/context/ListContext"
+
+import ItemForm from "@/components/ItemForm"
+import ItemDisplay from "@/components/ItemDisplay"
+import Filters from "@/components/Filters"
+
+import styles from "./page.module.css"
 
 export default function Home(): JSX.Element {
   return (
@@ -9,6 +12,7 @@ export default function Home(): JSX.Element {
       <ListContext>
         <ItemForm />
         <ItemDisplay />
+        <Filters />
       </ListContext>
     </main>
   )

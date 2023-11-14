@@ -2,8 +2,9 @@
 
 import { createContext, useReducer } from "react"
 import type { Dispatch } from "react"
+import removeEmptyKeys from "@/utils/removeEmptyKeys"
 
-import type { TypeItem } from "@/types"
+import type { TypeData, TypeItem } from "@/types"
 
 interface TypeNewItem extends Omit<TypeItem, "key"> {}
 
@@ -15,16 +16,10 @@ type ActionType =
   | {
       type: "updateList"
     }
-
-interface TypeData {
-  filters: {
-    thisMonth?: boolean
-    category?: string
-    month?: string
-    year?: number
-  }
-  list: TypeItem[] | []
-}
+  | {
+      type: "updateFilters"
+      payload: TypeData["filters"]
+    }
 
 export const ListContext = createContext<{
   data: TypeData
@@ -58,6 +53,10 @@ function reducer(state: TypeData, action: ActionType): TypeData {
       const updatedList = [newItem, ...state.list]
       window.localStorage.setItem("expenses-list", JSON.stringify(updatedList))
       return { ...state, list: updatedList }
+    }
+    case "updateFilters": {
+      const updatedFilter = { ...state.filters, ...action.payload }
+      return { ...state, filters: removeEmptyKeys(updatedFilter) }
     }
     default:
       return state
