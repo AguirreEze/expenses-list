@@ -17,10 +17,11 @@
   background-color: #333;
 }
 
-.arrowClose {
+.arrow {
   transform: rotate(90deg);
 }
-.arrow {
+
+.arrowContainer:has(> input[type="checkbox"]:checked) .arrow {
   transform: rotate(-90deg);
 }
 

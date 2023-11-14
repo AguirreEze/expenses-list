@@ -22,9 +22,7 @@ export default function Dropdown({
     <>
       <h2>{title}</h2>
       <div
-        className={`${styles.slider} ${
-          showFilters ? styles.sliderOpen : styles.sliderClosed
-        }`}
+        className={styles.slider}
         style={
           showFilters
             ? { maxHeight }
@@ -34,9 +32,7 @@ export default function Dropdown({
         {children}
       </div>
       <div className={styles.arrowContainer}>
-        <label className={showFilters ? styles.arrow : styles.arrowClose}>
-          {">"}
-        </label>
+        <label className={styles.arrow}>{">"}</label>
         <input
           className={styles.arrowCheckbox}
           type="checkbox"
