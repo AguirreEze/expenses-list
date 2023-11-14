@@ -1,20 +1,12 @@
 "use client"
-import { ListContext } from "@/context/ListContext"
+
 import { useState, type FormEvent, useRef, useContext } from "react"
+import { ListContext } from "@/context/ListContext"
+import { CATEGORIES } from "@/utils/constants"
 import { Enter } from "@/components/icons"
 import CardBorder from "@/components/CardBorder"
 
 import styles from "./styles.module.css"
-
-const CATEGORIES = [
-  "other",
-  "recreation",
-  "taxes",
-  "market",
-  "health",
-  "suscriptions",
-  "cuotas",
-]
 
 export default function ItemForm(): JSX.Element {
   const [description, setDescription] = useState("")
