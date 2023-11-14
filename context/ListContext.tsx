@@ -16,12 +16,22 @@ type ActionType =
       type: "updateList"
     }
 
-export const ListContext = createContext<{
+interface TypeData {
+  filters: {
+    thisMonth?: boolean
+    category?: string
+    month?: string
+    year?: number
+  }
   list: TypeItem[] | []
-  dispatch: Dispatch<ActionType>
-}>({ list: [], dispatch: () => [] })
+}
 
-const initialState: TypeItem[] | [] = []
+export const ListContext = createContext<{
+  data: TypeData
+  dispatch: Dispatch<ActionType>
+}>({ data: { filters: {}, list: [] }, dispatch: () => [] })
+
+const initialState: TypeData = { filters: {}, list: [] }
 
 const generateKey = (): string => {
   const storedKey = window.localStorage.getItem("item-key")
@@ -33,17 +43,21 @@ const generateKey = (): string => {
   return key
 }
 
-function reducer(state: TypeItem[], action: ActionType): TypeItem[] | [] {
+function reducer(state: TypeData, action: ActionType): TypeData {
   switch (action.type) {
     case "updateList":
-      return typeof window.localStorage.getItem("expenses-list") === "string"
-        ? JSON.parse(window.localStorage.getItem("expenses-list") as string)
-        : []
+      return {
+        ...state,
+        list:
+          typeof window.localStorage.getItem("expenses-list") === "string"
+            ? JSON.parse(window.localStorage.getItem("expenses-list") as string)
+            : [],
+      }
     case "addItem": {
       const newItem = { ...action.payload, key: generateKey() }
-      const updatedList = [newItem, ...state]
+      const updatedList = [newItem, ...state.list]
       window.localStorage.setItem("expenses-list", JSON.stringify(updatedList))
-      return updatedList
+      return { ...state, list: updatedList }
     }
     default:
       return state
@@ -55,10 +69,10 @@ export default function ListProvider({
 }: {
   children: React.ReactNode
 }): JSX.Element {
-  const [list, dispatch] = useReducer(reducer, initialState)
+  const [data, dispatch] = useReducer(reducer, initialState)
 
   return (
-    <ListContext.Provider value={{ list, dispatch }}>
+    <ListContext.Provider value={{ data, dispatch }}>
       {children}
     </ListContext.Provider>
   )

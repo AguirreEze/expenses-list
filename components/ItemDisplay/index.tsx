@@ -7,7 +7,7 @@ import CardBorder from "@/components/CardBorder"
 import styles from "./styles.module.css"
 
 export default function ItemDisplay(): JSX.Element {
-  const { list, dispatch } = useContext(ListContext)
+  const { data, dispatch } = useContext(ListContext)
   useEffect(() => {
     dispatch({ type: "updateList" })
   }, [])
@@ -24,7 +24,7 @@ export default function ItemDisplay(): JSX.Element {
           </tr>
         </thead>
         <tbody>
-          {list.map((elem) => (
+          {data?.list.map((elem) => (
             <tr key={elem.key} className={styles.tr}>
               <td>{elem.description}</td>
               <td>{elem.value}</td>
