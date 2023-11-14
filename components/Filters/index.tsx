@@ -1,12 +1,13 @@
 "use client"
 
+import { useContext } from "react"
+
 import { CATEGORIES, MONTHS } from "@/utils/constants"
 import CardBorder from "@/components/CardBorder"
+import Dropdown from "../Dropdown"
+import { ListContext } from "@/context/ListContext"
 
 import styles from "./styles.module.css"
-import Dropdown from "../Dropdown"
-import { useContext } from "react"
-import { ListContext } from "@/context/ListContext"
 
 export default function Filters(): JSX.Element {
   const { dispatch } = useContext(ListContext)

@@ -13,3 +13,9 @@
 .category {
   text-transform: capitalize;
 }
+
+@media (max-width: 650px) {
+  .container {
+    grid-column: span 4;
+  }
+}
