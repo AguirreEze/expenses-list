@@ -1,10 +1,13 @@
+import type { CSSProperties } from "react"
+
 import styles from "./styles.module.css"
 
 interface Iprops {
+  children: React.ReactNode
   tag?: "div" | "article" | "section" | "aside"
   maxWidth?: string
   className?: string
-  children: React.ReactNode
+  style?: CSSProperties
 }
 
 export default function CardBorder({
@@ -12,26 +15,33 @@ export default function CardBorder({
   tag = "div",
   maxWidth = "unset",
   className = "",
+  style = {},
 }: Iprops): JSX.Element {
   switch (tag) {
     case "article":
       return (
         <article
           className={`${styles.border} ${className}`}
-          style={{ maxWidth }}
+          style={{ maxWidth, ...style }}
         >
           {children}
         </article>
       )
     case "aside":
       return (
-        <aside className={`${styles.border} ${className}`} style={{ maxWidth }}>
+        <aside
+          className={`${styles.border} ${className}`}
+          style={{ maxWidth, ...style }}
+        >
           {children}
         </aside>
       )
     case "div":
       return (
-        <div className={`${styles.border} ${className}`} style={{ maxWidth }}>
+        <div
+          className={`${styles.border} ${className}`}
+          style={{ maxWidth, ...style }}
+        >
           {children}
         </div>
       )
@@ -39,7 +49,7 @@ export default function CardBorder({
       return (
         <section
           className={`${styles.border} ${className}`}
-          style={{ maxWidth }}
+          style={{ maxWidth, ...style }}
         >
           {children}
         </section>
