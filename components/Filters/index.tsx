@@ -19,7 +19,7 @@ export default function Filters(): JSX.Element {
     >
       <Dropdown title={"Filters"}>
         <form className={styles.form}>
-          <fieldset>
+          <div className={styles.hiddenCheckbox}>
             <label>this month</label>
             <input
               type="checkbox"
@@ -30,59 +30,53 @@ export default function Filters(): JSX.Element {
                 })
               }
             />
-          </fieldset>
-          <fieldset>
-            <select
-              name="category"
-              onChange={(e) =>
-                dispatch({
-                  type: "updateFilters",
-                  payload: { category: e.target.value },
-                })
-              }
-            >
-              <option value={""}>category</option>
-              {CATEGORIES.map((category) => {
-                return (
-                  <option value={category} key={category}>
-                    {category}
-                  </option>
-                )
-              })}
-            </select>
-          </fieldset>
-          <fieldset>
-            <select
-              name="category"
-              onChange={(e) =>
-                dispatch({
-                  type: "updateFilters",
-                  payload: { month: e.target.value },
-                })
-              }
-            >
-              <option value={""}>month</option>
-              {MONTHS.map((category) => {
-                return (
-                  <option value={category} key={category}>
-                    {category}
-                  </option>
-                )
-              })}
-            </select>
-          </fieldset>
-          <fieldset>
-            <input
-              type="number"
-              placeholder="Year"
-              onChange={(e) =>
-                dispatch({
-                  type: "updateFilters",
-                  payload: { year: e.target.value },
-                })
-              }
-            />
-          </fieldset>
+          </div>
+          <select
+            name="category"
+            onChange={(e) =>
+              dispatch({
+                type: "updateFilters",
+                payload: { category: e.target.value },
+              })
+            }
+          >
+            <option value={""}>category</option>
+            {CATEGORIES.map((category) => {
+              return (
+                <option value={category} key={category}>
+                  {category}
+                </option>
+              )
+            })}
+          </select>
+          <select
+            name="category"
+            onChange={(e) =>
+              dispatch({
+                type: "updateFilters",
+                payload: { month: e.target.value },
+              })
+            }
+          >
+            <option value={""}>month</option>
+            {MONTHS.map((category) => {
+              return (
+                <option value={category} key={category}>
+                  {category}
+                </option>
+              )
+            })}
+          </select>
+          <input
+            type="number"
+            placeholder="Year"
+            onChange={(e) =>
+              dispatch({
+                type: "updateFilters",
+                payload: { year: e.target.value },
+              })
+            }
+          />
         </form>
       </Dropdown>
     </CardBorder>
