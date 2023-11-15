@@ -13,11 +13,7 @@ export default function Filters(): JSX.Element {
   const { dispatch } = useContext(ListContext)
 
   return (
-    <CardBorder
-      className={styles.container}
-      tag="section"
-      style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}
-    >
+    <CardBorder className={styles.container} tag="section">
       <Dropdown title={"Filters"}>
         <form className={styles.form}>
           <div className={styles.hiddenCheckbox}>

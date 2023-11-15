@@ -9,6 +9,7 @@ interface Iprops {
   title: string
   maxHeight?: string
   hideContentOnClose?: boolean
+  gap?: string
 }
 
 export default function Dropdown({
@@ -16,10 +17,11 @@ export default function Dropdown({
   maxHeight = "250px",
   hideContentOnClose = true,
   title,
+  gap = ".5rem",
 }: Iprops): JSX.Element {
   const [showFilters, setShowFilters] = useState(false)
   return (
-    <>
+    <div className={styles.container} style={showFilters ? { gap } : {}}>
       <h2>{title}</h2>
       <div
         className={styles.slider}
@@ -40,6 +42,6 @@ export default function Dropdown({
           onChange={() => setShowFilters(!showFilters)}
         />
       </div>
-    </>
+    </div>
   )
 }

@@ -1,3 +1,9 @@
+.container {
+  display: grid;
+  place-items: center;
+  transition: gap 0.3s ease-out;
+}
+
 .slider {
   position: relative;
   overflow: hidden;
