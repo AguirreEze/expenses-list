@@ -17,6 +17,9 @@ type ActionType =
       type: "updateList"
     }
   | {
+      type: "clearList"
+    }
+  | {
       type: "updateFilters"
       payload: TypeData["filters"]
     }
@@ -57,6 +60,11 @@ function reducer(state: TypeData, action: ActionType): TypeData {
     case "updateFilters": {
       const updatedFilter = { ...state.filters, ...action.payload }
       return { ...state, filters: removeEmptyKeys(updatedFilter) }
+    }
+    case "clearList": {
+      window.localStorage.removeItem("expenses-list")
+      window.localStorage.removeItem("item-key")
+      return { ...state, list: [] }
     }
     default:
       return state
