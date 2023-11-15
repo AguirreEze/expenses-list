@@ -73,9 +73,12 @@ function reducer(state: TypeData, action: ActionType): TypeData {
       return { ...state, filters: removeEmptyKeys(updatedFilter) }
     }
     case "clearList": {
-      window.localStorage.removeItem("expenses-list")
-      window.localStorage.removeItem("item-key")
-      return { ...state, list: [] }
+      if (window.confirm("Clear list?")) {
+        window.localStorage.removeItem("expenses-list")
+        window.localStorage.removeItem("item-key")
+        return { ...state, list: [] }
+      }
+      return state
     }
     default:
       return state
