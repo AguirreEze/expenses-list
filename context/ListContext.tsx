@@ -23,6 +23,10 @@ type ActionType =
       type: "updateFilters"
       payload: TypeData["filters"]
     }
+  | {
+      type: "removeItem"
+      payload: string
+    }
 
 export const ListContext = createContext<{
   data: TypeData
@@ -54,6 +58,13 @@ function reducer(state: TypeData, action: ActionType): TypeData {
     case "addItem": {
       const newItem = { ...action.payload, key: generateKey() }
       const updatedList = [newItem, ...state.list]
+      window.localStorage.setItem("expenses-list", JSON.stringify(updatedList))
+      return { ...state, list: updatedList }
+    }
+    case "removeItem": {
+      const updatedList = state.list.filter(
+        (elem) => elem.key !== action.payload
+      )
       window.localStorage.setItem("expenses-list", JSON.stringify(updatedList))
       return { ...state, list: updatedList }
     }
