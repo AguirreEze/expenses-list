@@ -67,6 +67,7 @@ export default function Filters(): JSX.Element {
           <input
             type="number"
             placeholder="Year"
+            min="2000"
             onChange={(e) =>
               dispatch({
                 type: "updateFilters",
