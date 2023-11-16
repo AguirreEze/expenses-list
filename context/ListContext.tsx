@@ -6,7 +6,7 @@ import removeEmptyKeys from "@/utils/removeEmptyKeys"
 
 import type { TypeData, TypeItem } from "@/types"
 
-interface TypeNewItem extends Omit<TypeItem, "key"> {}
+interface TypeNewItem extends Omit<TypeItem, "id"> {}
 
 type ActionType =
   | {
@@ -35,14 +35,14 @@ export const ListContext = createContext<{
 
 const initialState: TypeData = { filters: {}, list: [] }
 
-const generateKey = (): string => {
-  const storedKey = window.localStorage.getItem("item-key")
+const generateId = (): string => {
+  const storedId = window.localStorage.getItem("item-id")
 
-  const key = typeof storedKey === "string" ? `${parseInt(storedKey) + 1}` : "0"
+  const id = typeof storedId === "string" ? `${parseInt(storedId) + 1}` : "0"
 
-  window.localStorage.setItem("item-key", key)
+  window.localStorage.setItem("item-id", id)
 
-  return key
+  return id
 }
 
 function reducer(state: TypeData, action: ActionType): TypeData {
@@ -56,14 +56,14 @@ function reducer(state: TypeData, action: ActionType): TypeData {
             : [],
       }
     case "addItem": {
-      const newItem = { ...action.payload, key: generateKey() }
+      const newItem = { ...action.payload, id: generateId() }
       const updatedList = [newItem, ...state.list]
       window.localStorage.setItem("expenses-list", JSON.stringify(updatedList))
       return { ...state, list: updatedList }
     }
     case "removeItem": {
       const updatedList = state.list.filter(
-        (elem) => elem.key !== action.payload
+        (elem) => elem.id !== action.payload
       )
       window.localStorage.setItem("expenses-list", JSON.stringify(updatedList))
       return { ...state, list: updatedList }
@@ -75,7 +75,7 @@ function reducer(state: TypeData, action: ActionType): TypeData {
     case "clearList": {
       if (window.confirm("Clear list?")) {
         window.localStorage.removeItem("expenses-list")
-        window.localStorage.removeItem("item-key")
+        window.localStorage.removeItem("item-id")
         return { ...state, list: [] }
       }
       return state

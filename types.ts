@@ -3,7 +3,7 @@ export interface TypeItem {
   value: string
   date: string
   category: string
-  key: string
+  id: string
 }
 export interface TypeData {
   filters: {
@@ -18,6 +18,6 @@ export interface TypeData {
 export interface TypeToast {
   color: "red" | "green"
   message: string
-  key: string
+  id: string
   length?: number
 }

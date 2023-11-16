@@ -6,7 +6,7 @@ import type { Dispatch } from "react"
 import Toast from "@/components/Toast"
 import type { TypeToast } from "@/types"
 
-interface TypeNewToast extends Omit<TypeToast, "key"> {}
+interface TypeNewToast extends Omit<TypeToast, "id"> {}
 
 type ActionType =
   | {
@@ -25,22 +25,22 @@ export const ToastContext = createContext<{
 
 const initialState: TypeToast[] = []
 
-const generateKey = (): string => {
-  const storedKey = window.localStorage.getItem("toast-key")
+const generateId = (): string => {
+  const storedId = window.localStorage.getItem("toast-id")
 
-  const key = typeof storedKey === "string" ? `${parseInt(storedKey) + 1}` : "0"
+  const id = typeof storedId === "string" ? `${parseInt(storedId) + 1}` : "0"
 
-  window.localStorage.setItem("toast-key", key)
+  window.localStorage.setItem("toast-id", id)
 
-  return key
+  return id
 }
 
 function reducer(state: TypeToast[], action: ActionType): TypeToast[] {
   switch (action.type) {
     case "addToast":
-      return [...state, { ...action.payload, key: generateKey() }]
+      return [...state, { ...action.payload, id: generateId() }]
     case "removeToast":
-      return state.filter((elem) => elem.key !== action.payload)
+      return state.filter((elem) => elem.id !== action.payload)
     default:
       return state
   }

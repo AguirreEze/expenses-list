@@ -5,20 +5,19 @@ import type { TypeToast } from "@/types"
 
 import styles from "./styles.module.css"
 
-interface Iprops {
-  data: TypeToast
-}
-
 export default function Message({
-  data: { color, message, key, length = 3000 },
-}: Iprops): JSX.Element {
+  color,
+  message,
+  id,
+  length = 3000,
+}: TypeToast): JSX.Element {
   const [hover, setHover] = useState(false)
   const { dispatch } = useContext(ToastContext)
 
   useEffect(() => {
     if (!hover) {
       const timeout = setTimeout(() => {
-        dispatch({ type: "removeToast", payload: key })
+        dispatch({ type: "removeToast", payload: id })
       }, length)
 
       return () => clearTimeout(timeout)

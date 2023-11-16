@@ -63,7 +63,7 @@ export default function ItemDisplay(): JSX.Element {
         </thead>
         <tbody>
           {filterList(data?.list).map((elem) => (
-            <tr key={elem.key} className={styles.tr}>
+            <tr key={elem.id} className={styles.tr}>
               <td>{elem.description}</td>
               <td>{elem.value}</td>
               <td className={styles.category}>{elem.category}</td>
@@ -71,7 +71,7 @@ export default function ItemDisplay(): JSX.Element {
               <button
                 className={styles.removeButton}
                 onClick={() =>
-                  dispatch({ type: "removeItem", payload: elem.key })
+                  dispatch({ type: "removeItem", payload: elem.id })
                 }
               >
                 X

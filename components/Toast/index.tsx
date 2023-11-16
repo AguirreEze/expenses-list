@@ -11,7 +11,7 @@ export default function Toast(): JSX.Element {
   return (
     <div className={styles.container}>
       {data.map((elem) => (
-        <Message data={elem} key={elem.key} />
+        <Message key={elem.id} {...elem} />
       ))}
     </div>
   )
