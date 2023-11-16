@@ -1,4 +1,5 @@
-import ListContext from "@/context/ListContext"
+import ListProvider from "@/context/ListContext"
+import ToastProvider from "@/context/ToastContext"
 
 import ItemForm from "@/components/ItemForm"
 import ItemDisplay from "@/components/ItemDisplay"
@@ -9,13 +10,15 @@ import styles from "./page.module.css"
 
 export default function Home(): JSX.Element {
   return (
-    <main className={styles.main}>
-      <ListContext>
-        <ItemForm />
-        <ItemDisplay />
-        <Filters />
-        <DebugButtons />
-      </ListContext>
-    </main>
+    <ToastProvider>
+      <ListProvider>
+        <main className={styles.main}>
+          <ItemForm />
+          <ItemDisplay />
+          <Filters />
+          <DebugButtons />
+        </main>
+      </ListProvider>
+    </ToastProvider>
   )
 }

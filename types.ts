@@ -14,3 +14,10 @@ export interface TypeData {
   }
   list: TypeItem[] | []
 }
+
+export interface TypeToast {
+  color: "red" | "green"
+  message: string
+  key: string
+  length?: number
+}

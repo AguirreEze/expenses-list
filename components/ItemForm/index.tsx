@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent, useRef, useContext } from "react"
 import { ListContext } from "@/context/ListContext"
+import { ToastContext } from "@/context/ToastContext"
 import { CATEGORIES } from "@/utils/constants"
 import { Enter } from "@/components/icons"
 import CardBorder from "@/components/CardBorder"
@@ -15,6 +16,7 @@ export default function ItemForm(): JSX.Element {
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
 
   const { dispatch } = useContext(ListContext)
+  const { dispatch: dispatchToast } = useContext(ToastContext)
 
   const valueRef = useRef<HTMLInputElement>(null)
 
@@ -27,6 +29,20 @@ export default function ItemForm(): JSX.Element {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault()
+
+    if (description === "" || value === "") {
+      description === "" &&
+        dispatchToast({
+          type: "addToast",
+          payload: { color: "red", message: "Invalid description" },
+        })
+      value === "" &&
+        dispatchToast({
+          type: "addToast",
+          payload: { color: "red", message: "Invalid value" },
+        })
+      return
+    }
 
     const newItem = {
       description,
