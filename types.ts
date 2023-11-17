@@ -1,8 +1,10 @@
+import { type CATEGORIES } from "./utils/constants"
+
 export interface TypeItem {
   description: string
   value: string
   date: string
-  category: string
+  category: (typeof CATEGORIES)[number]
   id: string
 }
 export interface TypeData {
