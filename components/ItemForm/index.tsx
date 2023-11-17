@@ -12,7 +12,7 @@ import styles from "./styles.module.css"
 export default function ItemForm(): JSX.Element {
   const [description, setDescription] = useState("")
   const [value, setValue] = useState("")
-  const [category, setCategory] = useState("other")
+  const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("other")
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
 
   const { dispatch } = useContext(ListContext)
@@ -85,7 +85,9 @@ export default function ItemForm(): JSX.Element {
           <select
             name="category"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) =>
+              setCategory(e.target.value as (typeof CATEGORIES)[number])
+            }
           >
             {CATEGORIES.map((category) => {
               return (
