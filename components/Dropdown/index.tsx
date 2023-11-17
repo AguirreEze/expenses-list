@@ -21,14 +21,14 @@ export default function Dropdown({
   gap = ".5rem",
   open = false,
 }: Iprops): JSX.Element {
-  const [showFilters, setShowFilters] = useState(open || false)
+  const [showContent, setShowContent] = useState(open || false)
   return (
-    <div className={styles.container} style={showFilters ? { gap } : {}}>
+    <div className={styles.container} style={showContent ? { gap } : {}}>
       <h2>{title}</h2>
       <div
         className={styles.slider}
         style={
-          showFilters
+          showContent
             ? { maxHeight }
             : { maxHeight: 0, opacity: hideContentOnClose ? 0 : 1 }
         }
@@ -40,8 +40,8 @@ export default function Dropdown({
         <input
           className={styles.arrowCheckbox}
           type="checkbox"
-          checked={showFilters}
-          onChange={() => setShowFilters(!showFilters)}
+          checked={showContent}
+          onChange={() => setShowContent(!showContent)}
         />
       </div>
     </div>
