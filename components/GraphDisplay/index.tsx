@@ -56,10 +56,10 @@ export default function GraphDisplay(): JSX.Element {
   }
 
   return (
-    <CardBorder>
+    <CardBorder className={styles.container}>
       <Dropdown title="Chart" maxHeight="500px" open>
         <div className={styles.div}>
-          <svg height="150" width="150" viewBox="0 0 20 20">
+          <svg className={styles.svg} viewBox="0 0 20 20">
             <PiePice color={"#333"} percentage={100} rotate={0} />
             {generateCategoryArray(list).map((category) => {
               return (
