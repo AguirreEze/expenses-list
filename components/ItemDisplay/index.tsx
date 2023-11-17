@@ -68,14 +68,14 @@ export default function ItemDisplay(): JSX.Element {
               <td>{elem.value}</td>
               <td className={styles.category}>{elem.category}</td>
               <td>{elem.date.replaceAll("-", "/")}</td>
-              <button
+              <td
                 className={styles.removeButton}
                 onClick={() =>
                   dispatch({ type: "removeItem", payload: elem.id })
                 }
               >
                 X
-              </button>
+              </td>
             </tr>
           ))}
         </tbody>
