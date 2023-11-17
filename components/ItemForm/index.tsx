@@ -59,54 +59,46 @@ export default function ItemForm(): JSX.Element {
   return (
     <CardBorder tag="section" maxWidth="1000px" className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <fieldset>
-          <input
-            className={styles.rowStart}
-            type="text"
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            ref={valueRef}
-            placeholder="Description"
-            autoFocus
-          />
-        </fieldset>
-        <fieldset>
-          <input
-            type="number"
-            name="value"
-            step="0.01"
-            value={value}
-            placeholder="Value"
-            onChange={(e) => setValue(e.target.value)}
-          />
-        </fieldset>
-        <fieldset>
-          <select
-            name="category"
-            value={category}
-            onChange={(e) =>
-              setCategory(e.target.value as (typeof CATEGORIES)[number])
-            }
-          >
-            {CATEGORIES.map((category) => {
-              return (
-                <option value={category} key={category}>
-                  {category}
-                </option>
-              )
-            })}
-          </select>
-        </fieldset>
-        <fieldset>
-          <input
-            className={styles.rowEnd}
-            type="date"
-            name="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </fieldset>
+        <input
+          className={styles.rowStart}
+          type="text"
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          ref={valueRef}
+          placeholder="Description"
+          autoFocus
+        />
+        <input
+          type="number"
+          name="value"
+          step="0.01"
+          value={value}
+          placeholder="Value"
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <select
+          name="category"
+          value={category}
+          onChange={(e) =>
+            setCategory(e.target.value as (typeof CATEGORIES)[number])
+          }
+        >
+          {CATEGORIES.map((category) => {
+            return (
+              <option value={category} key={category}>
+                {category}
+              </option>
+            )
+          })}
+        </select>
+        <input
+          className={styles.rowEnd}
+          type="date"
+          name="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
         <fieldset className={styles.submitContainer}>
           <button type="submit" className={styles.submit}>
             add item <Enter width={20} height={20} />
