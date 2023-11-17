@@ -10,6 +10,7 @@ interface Iprops {
   maxHeight?: string
   hideContentOnClose?: boolean
   gap?: string
+  open?: boolean
 }
 
 export default function Dropdown({
@@ -18,8 +19,9 @@ export default function Dropdown({
   hideContentOnClose = true,
   title,
   gap = ".5rem",
+  open = false,
 }: Iprops): JSX.Element {
-  const [showFilters, setShowFilters] = useState(false)
+  const [showFilters, setShowFilters] = useState(open || false)
   return (
     <div className={styles.container} style={showFilters ? { gap } : {}}>
       <h2>{title}</h2>
