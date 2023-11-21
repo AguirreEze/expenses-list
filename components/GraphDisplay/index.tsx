@@ -4,12 +4,13 @@ import { useContext } from "react"
 import { ListContext } from "@/context/ListContext"
 import CardBorder from "../CardBorder"
 import PiePice from "./PiePiece"
+import Dropdown from "@/components/Dropdown"
+import filterList from "@/utils/filterList"
 
+import { type CATEGORIES, CATEGORIES_COLORS } from "@/utils/constants"
 import type { TypeItem } from "@/types"
 
 import styles from "./styles.module.css"
-import { type CATEGORIES, CATEGORIES_COLORS } from "@/utils/constants"
-import Dropdown from "../Dropdown"
 
 interface Category {
   name: (typeof CATEGORIES)[number]
@@ -25,7 +26,7 @@ interface CategoryIncomplete
 
 export default function GraphDisplay(): JSX.Element {
   const {
-    data: { list },
+    data: { list, filters },
   } = useContext(ListContext)
 
   const generateCategoryArray = (arr: TypeItem[]): Category[] => {
@@ -64,16 +65,18 @@ export default function GraphDisplay(): JSX.Element {
         <div className={styles.div}>
           <svg className={styles.svg} viewBox="0 0 20 20">
             <PiePice color={"#333"} percentage={100} rotate={0} />
-            {generateCategoryArray(list).map((category) => {
-              return (
-                <PiePice
-                  color={category.color}
-                  percentage={category.percentage}
-                  rotate={category.rotate}
-                  key={category.name}
-                />
-              )
-            })}
+            {generateCategoryArray(filterList(list, filters)).map(
+              (category) => {
+                return (
+                  <PiePice
+                    color={category.color}
+                    percentage={category.percentage}
+                    rotate={category.rotate}
+                    key={category.name}
+                  />
+                )
+              }
+            )}
           </svg>
           <ul className={styles.list}>
             {generateCategoryArray(list).map((category) => {
@@ -82,7 +85,7 @@ export default function GraphDisplay(): JSX.Element {
                   <div
                     className={styles.itemDecoration}
                     style={{ backgroundColor: category.color }}
-                  ></div>
+                  />
                   <span>{`${category.name} (${(
                     Math.round(category.percentage * 100) / 100
                   ).toFixed(2)}%)`}</span>
