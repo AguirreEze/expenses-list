@@ -27,26 +27,33 @@ export default function ItemForm(): JSX.Element {
     setDate(new Date().toISOString().substring(0, 10))
   }
 
+  const isValidDescription = (str: string): boolean => str !== ""
+  const isValidValue = (str: string): boolean => {
+    return str !== "" || !isNaN(parseFloat(str))
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault()
 
-    if (description === "" || value === "") {
-      description === "" &&
-        dispatchToast({
-          type: "addToast",
-          payload: { color: "red", message: "Invalid description" },
-        })
-      value === "" &&
-        dispatchToast({
-          type: "addToast",
-          payload: { color: "red", message: "Invalid value" },
-        })
+    if (!isValidDescription(description)) {
+      dispatchToast({
+        type: "addToast",
+        payload: { color: "red", message: "Invalid description" },
+      })
+      return
+    }
+
+    if (!isValidValue(value)) {
+      dispatchToast({
+        type: "addToast",
+        payload: { color: "red", message: "Invalid value" },
+      })
       return
     }
 
     const newItem = {
       description,
-      value,
+      value: parseFloat(value),
       date,
       category,
     }

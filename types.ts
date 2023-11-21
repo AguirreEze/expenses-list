@@ -2,7 +2,7 @@ import { type CATEGORIES } from "./utils/constants"
 
 export interface TypeItem {
   description: string
-  value: string
+  value: number
   date: string
   category: (typeof CATEGORIES)[number]
   id: string
