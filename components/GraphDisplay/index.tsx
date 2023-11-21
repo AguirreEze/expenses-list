@@ -16,6 +16,7 @@ interface Category {
   count: number
   percentage: number
   rotate: number
+  value: number
   color: string
 }
 
@@ -28,29 +29,31 @@ export default function GraphDisplay(): JSX.Element {
   } = useContext(ListContext)
 
   const generateCategoryArray = (arr: TypeItem[]): Category[] => {
+    let totalExpended = 0
     let rotate = -90
     return arr
       .reduce(
         (acc: CategoryIncomplete[], curr: TypeItem): CategoryIncomplete[] => {
+          totalExpended = totalExpended + curr.value
           return typeof acc?.find((e) => e.name === curr.category) === "object"
             ? acc.map((e) => {
                 return e.name === curr.category
-                  ? { ...e, count: e.count + 1 }
+                  ? { ...e, count: e.count + 1, value: e.value + curr.value }
                   : e
               })
-            : [...acc, { name: curr.category, count: 1 }]
+            : [...acc, { name: curr.category, count: 1, value: curr.value }]
         },
         []
       )
-      .sort((a, b) => b?.count - a?.count)
+      .sort((a, b) => b?.value - a?.value)
       .map((category) => {
         const a = {
           ...category,
-          percentage: (category.count / list.length) * 100,
+          percentage: (category.value / totalExpended) * 100,
           rotate,
           color: CATEGORIES_COLORS[category.name],
         }
-        rotate = rotate + 360 * (category.count / list.length)
+        rotate = rotate + 360 * (category.value / totalExpended)
         return a
       })
   }
