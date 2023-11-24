@@ -5,7 +5,7 @@ const title: string = "Expenses"
 const description: string =
   "Simple list designed to be able to create elements only using keyboard for fast traking of your expenses, including data filters for easier analysis"
 
-const imgUrl: string = "/og-image.png"
+const imgUrl: string = "https://expenses-list-swart.vercel.app/og-image.png"
 
 export const metadata: Metadata = {
   title,
