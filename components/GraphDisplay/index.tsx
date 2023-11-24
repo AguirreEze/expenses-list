@@ -81,7 +81,11 @@ export default function GraphDisplay(): JSX.Element {
           <ul className={styles.list}>
             {generateCategoryArray(list).map((category) => {
               return (
-                <li className={styles.item} key={category.name}>
+                <li
+                  className={styles.item}
+                  key={category.name}
+                  title={`${category.value} $`}
+                >
                   <div
                     className={styles.itemDecoration}
                     style={{ backgroundColor: category.color }}
