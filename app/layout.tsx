@@ -1,27 +1,30 @@
 import type { Metadata } from "next"
 import "./globals.css"
 
+const title: string = "Expenses"
 const description: string =
   "Simple list designed to be able to create elements only using keyboard for fast traking of your expenses, including data filters for easier analysis"
 
+const imgUrl: string = "/og-image.png"
+
 export const metadata: Metadata = {
-  title: "Expenses",
+  title,
   description,
   openGraph: {
-    title: "Expenses",
+    title,
     description,
     images: {
-      url: "/og-image.png",
+      url: imgUrl,
       type: "image/jpg",
       width: 1200,
       height: 600,
     },
   },
   twitter: {
-    title: "Expenses",
+    title,
     description,
     images: {
-      url: "/og-image.png",
+      url: imgUrl,
       type: "image/jpg",
       width: 1200,
       height: 600,
